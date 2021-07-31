@@ -13,9 +13,6 @@ import static org.testng.Assert.assertNotEquals;
 
 public class DealerTest extends TestBase {
 
-    private class TestDealer extends Dealer {
-    }
-
     @Test
     public void testDeal() throws Exception {
         Dealer dealer = new TestDealer();

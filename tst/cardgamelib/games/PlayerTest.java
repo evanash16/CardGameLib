@@ -10,9 +10,6 @@ import static org.testng.Assert.*;
 
 public class PlayerTest extends TestBase {
 
-    private class TestPlayer extends Player {
-    }
-
     @Test
     public void testAddHand() {
         Player player = new TestPlayer();
@@ -36,7 +33,6 @@ public class PlayerTest extends TestBase {
         Player player = new TestPlayer();
         player.getHand();
     }
-
 
     @Test
     public void testGetHands() throws Exception {
