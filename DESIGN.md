@@ -81,7 +81,7 @@ A class which stores cards for players.
 * removeCards() &rarr; List<Card> : removes the cards from the hand and returns the removed cards
 * isPresent(Card card) &rarr; boolean : returns `true` if the card is present in the hand. Otherwise, returns `false`.
 * score(Function<Hand, Score> scoringFunction) &rarr; Score : returns the score for the hand 
-* score(Function<Hand, Hand, Score> scoringFunction) &rarr; Score : returns the score of the hand against another hand
+* score(Hand other, BiFunction<Hand, Hand, Score> scoringFunction) &rarr; Score : returns the score of the hand against another hand
 * toString() &rarr; String : returns the string representation of the hand (ex. `BLACKJACK.toString()` &rarr; `A♠ K♠`).
 * hashCode() &rarr; int : returns a unique hash for a given hand
 
