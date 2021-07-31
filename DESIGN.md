@@ -140,8 +140,10 @@ An abstract class for representing a player in a game.
 ### Methods
 * addHand() &rarr; Hand : adds a new empty hand, returning the new hand
 * addHand(Hand hand) : adds a predefined hand to the end
-* getHand() &rarr; Hand : returns the current hand
-* nextHand() &rarr; Hand : returns the next hand which becomes the current hand
+* getHand() &rarr; Hand : returns the current hand. If there are no hands, an exception should be thrown.
+* getHands() &rarr; List<Hand> : returns all hands. If there are no hands, an exception should be thrown.
+* removeHands() &rarr; List<Hand> : removes the hands and returns the removed hands. If there are no hands, an exception should be thrown.
+* nextHand() &rarr; Hand : returns the next hand which becomes the current hand. If there are no additional hands, this returns `null`. If there are no hands, an exception should be thrown.
 
 ## Dealer
 

@@ -66,11 +66,10 @@ public class HandTest extends TestBase {
         Hand hand = new Hand();
         List<Card> movedCards = Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES);
 
-        Card additionalCard = new Card(Value.TWO, Suit.DIAMONDS);
-        hand.addCards(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES, additionalCard));
+        hand.addCards(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES, TWO_OF_DIAMONDS));
 
         Hand newHand = hand.moveCards( movedCards);
-        assertEquals(hand.getCards(), Lists.newArrayList(additionalCard));
+        assertEquals(hand.getCards(), Lists.newArrayList(TWO_OF_DIAMONDS));
         assertEquals(newHand.getCards(),  movedCards);
     }
 
