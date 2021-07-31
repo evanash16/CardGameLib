@@ -60,6 +60,7 @@ Represents a playing card. There are 52 possible cards (13 values, 4 suits).
 * getCardIndex() &rarr; int : returns the index of the card (ex. `ACE_OF_CLUBS.getCardIndex()` &rarr; `0`)
 * toString() &rarr; String : returns the string representation of the card (ex. `ACE_OF_SPADES.toString()` &rarr; `A♠`). If the card is facedown, this function returns `??`.
 * hashCode() &rarr; int : returns a unique hash for a given card (ex. card index)
+* equals(Object other) &rarr; boolean : returns `true` if other is a `Card`, and shares the same attributes
 
 # Storage
 
@@ -99,8 +100,9 @@ A class which stores cards for dealers.
 * shuffle(int n) : shuffles the deck n times. If any cards are still in play, an exception should be thrown.
 * pick() &rarr; Card : picks on card and returns it. If there aren't enough cards remaining, an exception should be thrown.
 * pick(int n) &rarr; List<Card> : picks n cards and returns them. If there aren't enough cards remaining, an exception should be thrown.
-* discard(Card card): discards a card (this constitutes moving the card from `dealt` into `discarded`). If the card hasn't been dealt, an exception should be thrown.
-* discard(List<Card> cards): discards a list of cards. If any of the cards haven't been dealt, an exception should be thrown.
+* discard(Card card) : discards a card (this constitutes moving the card from `dealt` into `discarded`). If the card hasn't been dealt, an exception should be thrown.
+* discard(List<Card> cards) : discards a list of cards. If any of the cards haven't been dealt, an exception should be thrown.
+* getRemainingCardCount() &rarr; int : returns the number of cards remaining.
 
 # Evaluation
 

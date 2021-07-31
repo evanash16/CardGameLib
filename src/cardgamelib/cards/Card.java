@@ -45,4 +45,11 @@ public class Card {
     public int hashCode() {
         return this.getCardIndex();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof Card &&
+                ((Card) other).getValue() == this.getValue() &&
+                ((Card) other).getSuit() == this.getSuit();
+    }
 }
