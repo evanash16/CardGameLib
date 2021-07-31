@@ -153,11 +153,12 @@ An abstract class for representing a dealer in a game.
 * deck (Deck)
 
 ### Methods
-* shuffle() : wraps `deck.shuffle()`
-* shuffle(int n) : wraps `deck.shuffle(n)`
-* deal(int n) &rarr; Hand : deals n cards into a new hand, returning the new hand
-* deal(int n, Hand hand) : deals n cards into a specified hand
-* collect(Hand hand) : removes the cards from the hand and discards them 
+* shuffle() : wraps `deck.shuffle()`. If there are cards in play, an exception should be thrown.
+* shuffle(int n) : wraps `deck.shuffle(n)`. If there are cards in play, an exception should be thrown.
+* deal(int n) &rarr; Hand : deals n cards into a new hand, returning the new hand. If there aren't enough cards left in the deck, an exception should be thrown.
+* deal(int n, Hand hand) : deals n cards into a specified hand. If there aren't enough cards left in the deck, an exception should be thrown.
+* collect(Hand hand) : removes the cards from the hand and discards them. If any of the cards haven't been dealt, an exception should be thrown.
+* collect(List<Hand> hands) : removes the cards from the hands and discards them. If any of the cards in any of the hands haven't been dealt, an exception should be thrown.
 
 ## Game
 
