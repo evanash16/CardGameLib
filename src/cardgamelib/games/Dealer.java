@@ -14,7 +14,11 @@ public abstract class Dealer {
     private Deck deck;
 
     public Dealer() {
-        this.deck = new Deck();
+        this(1);
+    }
+
+    public Dealer(int n) {
+        this.deck = new Deck(n);
     }
 
     public void shuffle() throws CardsInPlayException {

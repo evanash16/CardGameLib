@@ -104,14 +104,14 @@ public class DeckTest extends TestBase {
 
     @Test
     public void testCardLifecycle() throws Exception {
-        Deck deck = new Deck();
-        List<Card> picked = deck.pick(32);
+        Deck deck = new Deck(5);
+        assertEquals(5 * 52, deck.getRemainingCardCount());
 
+        List<Card> picked = deck.pick((4 * 52) + 32);
         assertEquals(20, deck.getRemainingCardCount());
-
         deck.discard(picked);
         deck.shuffle();
 
-        assertEquals(52, deck.getRemainingCardCount());
+        assertEquals(5 * 52, deck.getRemainingCardCount());
     }
 }

@@ -7,34 +7,36 @@ import cardgamelib.exceptions.CardNotDealtException;
 import cardgamelib.exceptions.CardsInPlayException;
 import cardgamelib.exceptions.EmptyDeckException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Deck {
 
     private List<Card> cards;
-    private Set<Card> dealt;
+    private Map<Card, Integer> numDealtByCard;
     private List<Card> discarded;
 
     public Deck() {
+        this(1);
+    }
+
+    public Deck(int n) {
         cards = new ArrayList<>();
-        for (Suit suit: Suit.values()) {
-            for (Value value : Value.values()) {
-                cards.add(new Card(value, suit));
+        for (int i = 0; i < n; i++) {
+            for (Suit suit: Suit.values()) {
+                for (Value value : Value.values()) {
+                    cards.add(new Card(value, suit));
+                }
             }
         }
 
-        dealt = new HashSet<>();
+        numDealtByCard = new HashMap<>();
         discarded = new ArrayList<>();
     }
 
     public void shuffle() throws CardsInPlayException {
-        if (!dealt.isEmpty()) {
-            throw new CardsInPlayException(String.format("The following cards are still in play: %s", dealt));
+        if (!numDealtByCard.keySet().isEmpty()) {
+            throw new CardsInPlayException(String.format("The following cards are still in play: %s", numDealtByCard.keySet()));
         }
 
         this.cards.addAll(discarded);
@@ -55,7 +57,7 @@ public class Deck {
         }
 
         Card card = cards.remove(0);
-        dealt.add(card);
+        numDealtByCard.put(card, numDealtByCard.getOrDefault(card, 0) + 1);
         return card;
     }
 
@@ -73,17 +75,21 @@ public class Deck {
     }
 
     public void discard(Card card) throws CardNotDealtException {
-        if (!dealt.contains(card)) {
+        if (!numDealtByCard.containsKey(card)) {
             throw new CardNotDealtException(String.format("The card '%s' has not been dealt", card));
         }
 
-        dealt.remove(card);
+        if (numDealtByCard.get(card) > 1) {
+            numDealtByCard.put(card, numDealtByCard.get(card) - 1);
+        } else {
+            numDealtByCard.remove(card);
+        }
         discarded.add(card);
     }
 
     public void discard(List<Card> cards) throws CardNotDealtException {
         List<Card> undealtCards = cards.stream()
-                .filter((card) -> !dealt.contains(card))
+                .filter((card) -> !numDealtByCard.containsKey(card))
                 .collect(Collectors.toList());
 
         if (!undealtCards.isEmpty()) {

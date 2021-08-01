@@ -88,11 +88,11 @@ A class which stores cards for players.
 
 ## Deck
 
-A class which stores cards for dealers.
+A class which stores cards for dealers. A deck can be comprised of more than one "deck".
 
 ### Attributes
 * cards (List<Card>)
-* dealt (Set<Card>)
+* dealt (Map<Card, Integer>)
 * discarded (List<Card>)
 
 ### Methods
