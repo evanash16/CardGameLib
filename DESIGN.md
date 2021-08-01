@@ -84,7 +84,6 @@ A class which stores cards for players.
 * score(Function<Hand, Score> scoringFunction) &rarr; Score : returns the score for the hand 
 * score(Hand other, BiFunction<Hand, Hand, Score> scoringFunction) &rarr; Score : returns the score of the hand against another hand
 * toString() &rarr; String : returns the string representation of the hand (ex. `BLACKJACK.toString()` &rarr; `A♠ K♠`).
-* hashCode() &rarr; int : returns a unique hash for a given hand
 
 ## Deck
 

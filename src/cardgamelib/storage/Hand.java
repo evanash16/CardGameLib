@@ -3,10 +3,13 @@ package cardgamelib.storage;
 import cardgamelib.cards.Card;
 import cardgamelib.evaluation.Score;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -87,9 +90,5 @@ public class Hand {
         return StringUtils.join(cards.stream()
                 .map(Card::toString)
                 .collect(Collectors.toList()), " ");
-    }
-
-    public int hashCode() {
-        return present.hashCode();
     }
 }
