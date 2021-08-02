@@ -9,9 +9,7 @@ import org.testng.collections.Lists;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class HandTest extends TestBase {
 
@@ -105,5 +103,27 @@ public class HandTest extends TestBase {
         String expected = String.format("%s %s", ACE_OF_CLUBS, KING_OF_SPADES);
 
         assertEquals(hand.toString(), expected);
+    }
+
+    @Test
+    public void testEquals() {
+        Hand hand = new Hand(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
+        Hand otherHand = new Hand(Lists.newArrayList(KING_OF_SPADES, ACE_OF_CLUBS));
+
+        assertEquals(hand, otherHand);
+    }
+
+    @Test
+    public void testEqualsFailsWithDuplicateCards() {
+        Hand hand = new Hand(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
+        Hand otherHand = new Hand(Lists.newArrayList(KING_OF_SPADES, ACE_OF_CLUBS, ACE_OF_CLUBS));
+
+        assertNotEquals(hand, otherHand);
+    }
+
+    @Test
+    public void testEqualsFailsWithNonHand() {
+        Hand hand = new Hand(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
+        assertNotEquals(hand, new Object());
     }
 }

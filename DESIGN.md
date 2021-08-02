@@ -83,6 +83,7 @@ A class which stores cards for players.
 * isPresent(Card card) &rarr; boolean : returns `true` if the card is present in the hand. Otherwise, returns `false`.
 * score(Function<Hand, Score> scoringFunction) &rarr; Score : returns the score for the hand 
 * score(Hand other, BiFunction<Hand, Hand, Score> scoringFunction) &rarr; Score : returns the score of the hand against another hand
+* equals(Object other) &rarr; boolean : returns `true` if `other` is a Hand and contains all of the same cards
 * toString() &rarr; String : returns the string representation of the hand (ex. `BLACKJACK.toString()` &rarr; `A♠ K♠`).
 
 ## Deck
