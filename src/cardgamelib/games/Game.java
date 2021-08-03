@@ -1,22 +1,26 @@
 package cardgamelib.games;
 
-import cardgamelib.exceptions.CardNotDealtException;
-import cardgamelib.exceptions.CardsInPlayException;
 import cardgamelib.exceptions.NoHandsException;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
-public abstract class Game {
+@Getter
+public abstract class Game<T extends Dealer, U extends Player> {
 
-    protected Dealer dealer;
-    protected List<Player> players;
+    private T dealer;
+    private List<U> players;
 
-    abstract void play();
-    abstract void score();
+    public Game(final T dealer, final List<U> players) {
+        this.dealer = dealer;
+        this.players = players;
+    }
 
-    public void reset() throws CardNotDealtException, CardsInPlayException {
+    public abstract void play();
+
+    public abstract void score();
+
+    public void reset() {
         for (Player player : players) {
             try {
                 dealer.collect(player.removeHands());

@@ -14,18 +14,18 @@ public class GameTest extends TestBase {
         }
 
         @Override
-        void play() {
+        public void play() {
             // do nothing
         }
 
         @Override
-        void score() {
+        public void score() {
             // do nothing
         }
     }
 
     @Test
-    public void testReset() throws Exception {
+    public void testReset() {
         Dealer dealer = new TestDealer();
         Player playerTwo = new TestPlayer();
         playerTwo.addHand(dealer.deal(2));

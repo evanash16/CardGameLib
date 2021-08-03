@@ -19,7 +19,7 @@ public class PlayerTest extends TestBase {
     }
 
     @Test
-    public void testAddHandWithPredefinedHand() throws Exception {
+    public void testAddHandWithPredefinedHand() {
         Player player = new TestPlayer();
         Hand hand = new Hand(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
 
@@ -29,13 +29,13 @@ public class PlayerTest extends TestBase {
     }
 
     @Test(expectedExceptions = {NoHandsException.class})
-    public void testGetHandFailsWithNoHand() throws Exception {
+    public void testGetHandFailsWithNoHand() {
         Player player = new TestPlayer();
         player.getHand();
     }
 
     @Test
-    public void testGetHands() throws Exception {
+    public void testGetHands() {
         Player player = new TestPlayer();
         player.addHand();
         player.addHand();
@@ -44,13 +44,13 @@ public class PlayerTest extends TestBase {
     }
 
     @Test(expectedExceptions = {NoHandsException.class})
-    public void testGetHandsFailsWithNoHands() throws Exception {
+    public void testGetHandsFailsWithNoHands() {
         Player player = new TestPlayer();
         player.getHands();
     }
 
     @Test
-    public void testRemoveHands() throws Exception {
+    public void testRemoveHands() {
         Player player = new TestPlayer();
         player.addHand();
         player.addHand();
@@ -59,13 +59,13 @@ public class PlayerTest extends TestBase {
     }
 
     @Test(expectedExceptions = {NoHandsException.class})
-    public void testRemoveHandsFailsWithNoHands() throws Exception {
+    public void testRemoveHandsFailsWithNoHands() {
         Player player = new TestPlayer();
         player.removeHands();
     }
 
     @Test
-    public void testNextHand() throws Exception {
+    public void testNextHand() {
         Player player = new TestPlayer();
 
         player.addHand();
@@ -76,13 +76,13 @@ public class PlayerTest extends TestBase {
     }
 
     @Test(expectedExceptions = {NoHandsException.class})
-    public void testNextHandFailsWithNoHands() throws Exception {
+    public void testNextHandFailsWithNoHands() {
         Player player = new TestPlayer();
         player.nextHand();
     }
 
     @Test
-    public void testHandLifecycle() throws Exception {
+    public void testHandLifecycle() {
         Player player = new TestPlayer();
         Hand firstHand = player.addHand();
         firstHand.addCards(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));

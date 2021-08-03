@@ -14,7 +14,7 @@ import static org.testng.Assert.assertNotEquals;
 public class DealerTest extends TestBase {
 
     @Test
-    public void testDeal() throws Exception {
+    public void testDeal() {
         Dealer dealer = new TestDealer();
         Hand hand = dealer.deal(5);
 
@@ -22,7 +22,7 @@ public class DealerTest extends TestBase {
     }
 
     @Test
-    public void testDealIntoHand() throws Exception {
+    public void testDealIntoHand() {
         Dealer dealer = new TestDealer();
         Hand existingHand = new Hand(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
         dealer.deal(5, existingHand);
@@ -31,7 +31,7 @@ public class DealerTest extends TestBase {
     }
 
     @Test
-    public void testCollect() throws Exception {
+    public void testCollect() {
         Dealer dealer = new TestDealer();
         Hand hand = dealer.deal(5);
 
@@ -43,7 +43,7 @@ public class DealerTest extends TestBase {
     }
 
     @Test
-    public void testCollectWithMultipleHands() throws Exception {
+    public void testCollectWithMultipleHands() {
         Dealer dealer = new TestDealer();
         Hand firstHand = dealer.deal(5);
         Hand secondHand = dealer.deal(5);
@@ -57,7 +57,7 @@ public class DealerTest extends TestBase {
     }
 
     @Test(expectedExceptions = {CardNotDealtException.class})
-    public void testCollectWithMultipleHandsFailsWithUndealtCards() throws Exception {
+    public void testCollectWithMultipleHandsFailsWithUndealtCards() {
         Dealer dealer = new TestDealer();
         Hand firstHand = new Hand(Lists.newArrayList(KING_OF_SPADES, TWO_OF_DIAMONDS));
 
@@ -71,7 +71,7 @@ public class DealerTest extends TestBase {
 
 
     @Test
-    public void testDeckLifecycle() throws Exception {
+    public void testDeckLifecycle() {
         Dealer dealer = new TestDealer();
         dealer.shuffle(5);
 

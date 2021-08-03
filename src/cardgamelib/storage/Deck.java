@@ -34,7 +34,7 @@ public class Deck {
         discarded = new ArrayList<>();
     }
 
-    public void shuffle() throws CardsInPlayException {
+    public void shuffle() {
         if (!numDealtByCard.keySet().isEmpty()) {
             throw new CardsInPlayException(String.format("The following cards are still in play: %s", numDealtByCard.keySet()));
         }
@@ -45,13 +45,13 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
-    public void shuffle(int n) throws CardsInPlayException {
+    public void shuffle(int n) {
         for (int i = 0; i < n; i++) {
             shuffle();
         }
     }
 
-    public Card pick() throws EmptyDeckException {
+    public Card pick() {
         if (cards.isEmpty()) {
             throw new EmptyDeckException("The deck is empty.");
         }
@@ -61,7 +61,7 @@ public class Deck {
         return card;
     }
 
-    public List<Card> pick(int n) throws EmptyDeckException {
+    public List<Card> pick(int n) {
         if (cards.size() < n) {
             throw new EmptyDeckException(String.format("The deck has fewer than %d cards.", n));
         }
@@ -74,7 +74,7 @@ public class Deck {
         return cards;
     }
 
-    public void discard(Card card) throws CardNotDealtException {
+    public void discard(Card card) {
         if (!numDealtByCard.containsKey(card)) {
             throw new CardNotDealtException(String.format("The card '%s' has not been dealt", card));
         }
@@ -87,7 +87,7 @@ public class Deck {
         discarded.add(card);
     }
 
-    public void discard(List<Card> cards) throws CardNotDealtException {
+    public void discard(List<Card> cards) {
         List<Card> undealtCards = cards.stream()
                 .filter((card) -> !numDealtByCard.containsKey(card))
                 .collect(Collectors.toList());

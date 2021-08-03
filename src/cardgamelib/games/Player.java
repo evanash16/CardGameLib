@@ -30,7 +30,7 @@ public abstract class Player {
         this.hands.add(hand);
     }
 
-    public Hand getHand() throws NoHandsException {
+    public Hand getHand() {
         if (this.hands.isEmpty()) {
             throw new NoHandsException("There are no hands to retrieve.");
         }
@@ -38,7 +38,7 @@ public abstract class Player {
         return this.hands.get(this.currentHand);
     }
 
-    public List<Hand> getHands() throws NoHandsException {
+    public List<Hand> getHands() {
         if (this.hands.isEmpty()) {
             throw new NoHandsException("There are no hands to retrieve.");
         }
@@ -46,7 +46,7 @@ public abstract class Player {
         return this.hands;
     }
 
-    public List<Hand> removeHands() throws NoHandsException {
+    public List<Hand> removeHands() {
         if (this.hands.isEmpty()) {
             throw new NoHandsException("There are no hands to remove.");
         }
@@ -57,7 +57,7 @@ public abstract class Player {
         return removedHands;
     }
 
-    public Hand nextHand() throws NoHandsException {
+    public Hand nextHand() {
         if (this.hands.isEmpty()) {
             throw new NoHandsException("There are no hands to retrieve.");
         }

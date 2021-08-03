@@ -15,34 +15,34 @@ import static org.testng.Assert.assertEquals;
 public class DeckTest extends TestBase {
 
     @Test
-    public void testShuffleMultipleTimes() throws Exception {
+    public void testShuffleMultipleTimes() {
         Deck deck = new Deck();
         deck.shuffle(5);
         deck.pick();
     }
 
     @Test(expectedExceptions = {CardsInPlayException.class})
-    public void testShuffleWithCardsInPlay() throws Exception {
+    public void testShuffleWithCardsInPlay() {
         Deck deck = new Deck();
         deck.pick();
         deck.shuffle();
     }
 
     @Test(expectedExceptions = {CardsInPlayException.class})
-    public void testShuffleMultipleTimesWithCardsInPlay() throws Exception {
+    public void testShuffleMultipleTimesWithCardsInPlay() {
         Deck deck = new Deck();
         deck.pick();
         deck.shuffle(5);
     }
 
     @Test
-    public void testPick() throws Exception {
+    public void testPick() {
         Deck deck = new Deck();
         assertEquals(deck.pick(), ACE_OF_CLUBS);
     }
 
     @Test
-    public void testPickMultipleCards() throws Exception {
+    public void testPickMultipleCards() {
         Deck deck = new Deck();
         List<Card> cards = deck.pick(5);
 
@@ -51,7 +51,7 @@ public class DeckTest extends TestBase {
     }
 
     @Test(expectedExceptions = {EmptyDeckException.class})
-    public void testPickFailsWithEmptyDeck() throws Exception {
+    public void testPickFailsWithEmptyDeck() {
         Deck deck = new Deck();
         for (int i = 0; i < 52; i++) {
             deck.pick();
@@ -60,7 +60,7 @@ public class DeckTest extends TestBase {
     }
 
     @Test(expectedExceptions = {EmptyDeckException.class})
-    public void testPickMultipleCardsFailsWithEmptyDeck() throws Exception {
+    public void testPickMultipleCardsFailsWithEmptyDeck() {
         Deck deck = new Deck();
         deck.pick(53);
 
@@ -69,7 +69,7 @@ public class DeckTest extends TestBase {
     }
 
     @Test
-    public void testDiscard() throws Exception {
+    public void testDiscard() {
         Deck deck = new Deck();
         Card picked = deck.pick();
 
@@ -80,13 +80,13 @@ public class DeckTest extends TestBase {
     }
 
     @Test (expectedExceptions = {CardNotDealtException.class})
-    public void testDiscardFailsWithNonDealtCard() throws Exception {
+    public void testDiscardFailsWithNonDealtCard() {
         Deck deck = new Deck();
         deck.discard(ACE_OF_CLUBS);
     }
 
     @Test
-    public void testDiscardMultipleCards() throws Exception {
+    public void testDiscardMultipleCards() {
         Deck deck = new Deck();
         List<Card> picked = deck.pick(5);
 
@@ -97,13 +97,13 @@ public class DeckTest extends TestBase {
     }
 
     @Test (expectedExceptions = {CardNotDealtException.class})
-    public void testDiscardMultipleCardsFailsWithNonDealtCard() throws Exception {
+    public void testDiscardMultipleCardsFailsWithNonDealtCard() {
         Deck deck = new Deck();
         deck.discard(Lists.newArrayList(ACE_OF_CLUBS, KING_OF_SPADES));
     }
 
     @Test
-    public void testCardLifecycle() throws Exception {
+    public void testCardLifecycle() {
         Deck deck = new Deck(5);
         assertEquals(5 * 52, deck.getRemainingCardCount());
 
