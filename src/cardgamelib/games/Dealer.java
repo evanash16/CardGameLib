@@ -10,6 +10,9 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An abstract class for representing a dealer in a game.
+ */
 public abstract class Dealer {
 
     @Getter
@@ -19,34 +22,72 @@ public abstract class Dealer {
         this(1);
     }
 
-    public Dealer(int n) {
+    public Dealer(final int n) {
         this.deck = new Deck(n);
     }
 
+    /**
+     * Wraps {@code deck.shuffle()}.
+     * If there are cards in play, a {@link CardsInPlayException} is thrown.
+     *
+     * @throws CardsInPlayException there are still cards in play
+     */
     public void shuffle() {
         this.deck.shuffle();
     }
 
-    public void shuffle(int n) {
+    /**
+     * Wraps {@code deck.shuffle(int n)}.
+     * If there are cards in play, a {@link CardsInPlayException} is thrown.
+     *
+     * @param n the number of cards to deal
+     * @throws CardsInPlayException there are still cards in play
+     */
+    public void shuffle(final int n) {
         this.deck.shuffle(n);
     }
 
-    public Hand deal(int n) {
+    /**
+     * Deals {@code n} cards into a new hand, returning the new hand.
+     * If there aren't enough cards left in the deck, an {@link EmptyDeckException} is thrown.
+     *
+     * @param n the number of cards to deal
+     * @return {@link Hand} - a new hand containing {@code n} cards picked from the deck
+     * @throws EmptyDeckException there aren't enough cards left in the {@link Deck}
+     */
+    public Hand deal(final int n) {
         Hand newHand = new Hand();
         newHand.addCards(deck.pick(n));
 
         return newHand;
     }
 
-    public void deal(int n, Hand hand) {
+    /**
+     * Deals {@code n} cards into {@code hand}.
+     * If there aren't enough cards left in the deck, an {@link EmptyDeckException} is thrown.
+     *
+     * @param n the number of cards to deal
+     * @throws EmptyDeckException there aren't enough cards left in the {@link Deck}
+     */
+    public void deal(final int n, final Hand hand) {
         hand.addCards(deck.pick(n));
     }
 
-    public void collect(Hand hand)  {
+    /**
+     * Removes the cards from {@code hand} and discards them.
+     *
+     * @param hand the {@link Hand} to collect cards from to discard
+     */
+    public void collect(final Hand hand) {
         this.deck.discard(hand.removeCards());
     }
 
-    public void collect(List<Hand> hands) {
+    /**
+     * Removes the cards from every {@link Hand} in {@code hands} and discards them.
+     *
+     * @param hands a list of hands to collect cards from to discard
+     */
+    public void collect(final List<Hand> hands) {
         List<Hand> failedHands = new ArrayList<>();
         for (Hand hand : hands) {
             try {
