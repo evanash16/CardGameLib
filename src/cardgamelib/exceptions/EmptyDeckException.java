@@ -7,7 +7,7 @@ import cardgamelib.storage.Deck;
  */
 public class EmptyDeckException extends RuntimeException {
 
-    public EmptyDeckException(String message) {
+    public EmptyDeckException(final String message) {
         super(message);
     }
 }

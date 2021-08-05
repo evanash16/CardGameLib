@@ -7,7 +7,7 @@ import cardgamelib.cards.Card;
  */
 public class CardsInPlayException extends RuntimeException {
 
-    public CardsInPlayException(String message) {
+    public CardsInPlayException(final String message) {
         super(message);
     }
 }

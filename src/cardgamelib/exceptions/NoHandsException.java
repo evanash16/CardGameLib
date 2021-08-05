@@ -8,7 +8,7 @@ import cardgamelib.storage.Hand;
  */
 public class NoHandsException extends RuntimeException {
 
-    public NoHandsException(String message) {
+    public NoHandsException(final String message) {
         super(message);
     }
 }

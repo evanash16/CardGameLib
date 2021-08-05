@@ -39,13 +39,12 @@ public abstract class Player {
      *
      * @param hand - a hand to add to the {@link Player}
      */
-    public void addHand(Hand hand) {
+    public void addHand(final Hand hand) {
         this.hands.add(hand);
     }
 
     /**
      * Returns the current hand.
-     * If there are no hands, a {@link NoHandsException} will be thrown.
      *
      * @return {@link Hand} - the current hand
      * @throws NoHandsException there are no hands
@@ -60,7 +59,6 @@ public abstract class Player {
 
     /**
      * Returns all hands.
-     * If there are no hands, a {@link NoHandsException} will be thrown.
      *
      * @return {@code List<Hand>} - a list of all hands
      * @throws NoHandsException there are no hands
@@ -92,7 +90,6 @@ public abstract class Player {
     /**
      * Increments {@code currentHand} to point at the next hand, if one exists.
      * If there are no additional hands, this function returns {@code null}, and {@code currentHand} is reset.
-     * If there are no hands, a {@link NoHandsException} is thrown.
      *
      * @return {@link Hand} - the next hand
      * @throws NoHandsException there are no hands

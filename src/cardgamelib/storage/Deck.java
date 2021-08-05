@@ -23,7 +23,7 @@ public class Deck {
         this(1);
     }
 
-    public Deck(int n) {
+    public Deck(final int n) {
         cards = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             for (Suit suit : Suit.values()) {
@@ -39,7 +39,6 @@ public class Deck {
 
     /**
      * Recombines the discard pile, and shuffles the deck one time.
-     * If any cards are still in play, a {@link CardsInPlayException} is thrown.
      *
      * @throws CardsInPlayException there are cards still in play.
      */
@@ -60,7 +59,7 @@ public class Deck {
      *
      * @param n the number of times to shuffle
      */
-    public void shuffle(int n) {
+    public void shuffle(final int n) {
         for (int i = 0; i < n; i++) {
             shuffle();
         }
@@ -68,7 +67,6 @@ public class Deck {
 
     /**
      * Picks one card and returns it.
-     * If the deck is empty, an {@link EmptyDeckException} is thrown.
      *
      * @return {@link Card} - one card from the deck
      * @throws EmptyDeckException the deck is empty
@@ -85,13 +83,12 @@ public class Deck {
 
     /**
      * Picks {@code n} cards and returns them.
-     * If there aren't enough cards remaining, an {@link EmptyDeckException} is thrown.
      *
      * @param n the number of cards to pick
      * @return {@code List<Card>} - {@code n} cards from the deck
      * @throws EmptyDeckException there aren't enough cards remaining
      */
-    public List<Card> pick(int n) {
+    public List<Card> pick(final int n) {
         if (cards.size() < n) {
             throw new EmptyDeckException(String.format("The deck has fewer than %d cards.", n));
         }
@@ -106,12 +103,11 @@ public class Deck {
 
     /**
      * Discards a card. If all cards have been discarded, {@code shuffle()} will succeed.
-     * If {@code card} hasn't been dealt, a {@link CardNotDealtException} will be thrown.
      *
      * @param card the card to discard
      * @throws CardNotDealtException {@code card} hasn't been dealt
      */
-    public void discard(Card card) {
+    public void discard(final Card card) {
         if (!numDealtByCard.containsKey(card)) {
             throw new CardNotDealtException(String.format("The card '%s' has not been dealt", card));
         }
@@ -126,12 +122,11 @@ public class Deck {
 
     /**
      * Discards a list of cards. If all cards have been discarded, {@code shuffle()} will succeed.
-     * If any of the cards in {@code cards} haven't been dealt, a {@link CardNotDealtException} will be thrown.
      *
      * @param cards the cards to discard
      * @throws CardNotDealtException {@code cards} contains cards that haven't been dealt
      */
-    public void discard(List<Card> cards) {
+    public void discard(final List<Card> cards) {
         List<Card> undealtCards = cards.stream()
                 .filter((card) -> !numDealtByCard.containsKey(card))
                 .collect(Collectors.toList());

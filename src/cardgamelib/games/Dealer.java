@@ -28,7 +28,6 @@ public abstract class Dealer {
 
     /**
      * Wraps {@code deck.shuffle()}.
-     * If there are cards in play, a {@link CardsInPlayException} is thrown.
      *
      * @throws CardsInPlayException there are still cards in play
      */
@@ -38,7 +37,6 @@ public abstract class Dealer {
 
     /**
      * Wraps {@code deck.shuffle(int n)}.
-     * If there are cards in play, a {@link CardsInPlayException} is thrown.
      *
      * @param n the number of cards to deal
      * @throws CardsInPlayException there are still cards in play
@@ -49,7 +47,6 @@ public abstract class Dealer {
 
     /**
      * Deals {@code n} cards into a new hand, returning the new hand.
-     * If there aren't enough cards left in the deck, an {@link EmptyDeckException} is thrown.
      *
      * @param n the number of cards to deal
      * @return {@link Hand} - a new hand containing {@code n} cards picked from the deck
@@ -64,7 +61,6 @@ public abstract class Dealer {
 
     /**
      * Deals {@code n} cards into {@code hand}.
-     * If there aren't enough cards left in the deck, an {@link EmptyDeckException} is thrown.
      *
      * @param n the number of cards to deal
      * @throws EmptyDeckException there aren't enough cards left in the {@link Deck}

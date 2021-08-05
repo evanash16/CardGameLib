@@ -117,7 +117,10 @@ public class Hand {
         hand.addCards(cards);
     }
 
-    private Card removeCard(Card card) {
+    private Card removeCard(final Card card) {
+        if (!isPresent(card)) {
+            throw new IllegalArgumentException(String.format("Card '%s' does not exist in the hand.", card));
+        }
         cards.remove(card);
         present.remove(card);
 
@@ -128,6 +131,7 @@ public class Hand {
      * Removes all cards from the hand and returns the removed cards.
      *
      * @return {@code List<Card>} - the removed cards
+     * @throws IllegalArgumentException {@code card} doesn't exist in the {@link Hand}
      */
     public List<Card> removeCards() {
         List<Card> cardsCopy = new ArrayList<>(this.cards);
@@ -143,7 +147,7 @@ public class Hand {
      * @param card the {@link Card} to search for
      * @return {@code boolean} - whether {@code card} is in the hand
      */
-    public boolean isPresent(Card card) {
+    public boolean isPresent(final Card card) {
         return present.contains(card);
     }
 
@@ -153,7 +157,7 @@ public class Hand {
      * @param scoringFunction a function which takes a {@link Hand} and returns its {@link Score}
      * @return {@link Score} - the score for the {@link Hand}
      */
-    public Score score(Function<Hand, Score> scoringFunction) {
+    public Score score(final Function<Hand, Score> scoringFunction) {
         return scoringFunction.apply(this);
     }
 
@@ -164,7 +168,7 @@ public class Hand {
      * @param scoringFunction a function which takes a {@link Hand} and a {@link Hand} to compare against, and returns its {@link Score}
      * @return {@link Score} - the score for the {@link Hand} against the {@code other}
      */
-    public Score score(Hand other, BiFunction<Hand, Hand, Score> scoringFunction) {
+    public Score score(final Hand other, final BiFunction<Hand, Hand, Score> scoringFunction) {
         return scoringFunction.apply(this, other);
     }
 
@@ -194,7 +198,7 @@ public class Hand {
      * @return - a boolean evaluation of "{@code other} is equivalent to the {@link Hand}"
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(final Object other) {
         return other instanceof Hand &&
                 this.cards.size() == ((Hand) other).getCards().size() &&
                 this.cards.containsAll(((Hand) other).getCards()) &&

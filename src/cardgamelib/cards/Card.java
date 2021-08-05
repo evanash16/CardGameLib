@@ -98,7 +98,7 @@ public class Card {
      * @return {@code Object} - a boolean evaluation of "{@code other} is equivalent to the {@link Card}"
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(final Object other) {
         return other instanceof Card &&
                 ((Card) other).getValue() == this.getValue() &&
                 ((Card) other).getSuit() == this.getSuit();

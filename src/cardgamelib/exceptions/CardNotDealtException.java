@@ -7,7 +7,7 @@ import cardgamelib.cards.Card;
  */
 public class CardNotDealtException extends RuntimeException {
 
-    public CardNotDealtException(String message) {
+    public CardNotDealtException(final String message) {
         super(message);
     }
 }
